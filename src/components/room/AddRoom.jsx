@@ -1,24 +1,24 @@
-import React, {useState} from 'react'
-import RoomTypeSelector from '/Users/admin/Desktop/GitHub/LakeSide-Hotel/Client/src/components/common/RoomTypeSelector.jsx'
-import {addRoom} from '/Users/admin/Desktop/GitHub/LakeSide-Hotel/Client/src/components/utils/ApiFunctions.js'
+import React, {useState} from "react"
+import RoomTypeSelector from "../common/RoomTypeSelector"
+import {addRoom} from '/Users/admin/Desktop/GitHub/LakeSide-Hotel/Client/src/components/utils/ApiFunctions'
 
 
 const AddRoom = () => {
     const[newRoom, setNewRoom] = useState({
         photo :null,
-        roomType : " ",
-        roomPrice : " "
+        roomType : "",
+        roomPrice : ""
     })
 
-    const [imagePreview, setImagePreview] = useState(" ")
-    const[successMessage, setSuccessMessage] = useState(" ")
-    const[errorMessage, setErrorMessage] = useState(" ")
+    const [imagePreview, setImagePreview] = useState("")
+    const[successMessage, setSuccessMessage] = useState("")
+    const[errorMessage, setErrorMessage] = useState("")
 
     const handleRoomInputChange = (e) => {
         const name = e.target.name
         let value = e.target.value
 
-        if(name == 'roomPrice'){
+        if(name === 'roomPrice'){
             if(!isNaN(value)){
                 value = parseInt(value)
             }else{
@@ -34,17 +34,17 @@ const AddRoom = () => {
         setImagePreview(URL.createObjectURL(selectedImage)) 
     }
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         try{
             const success = await addRoom(newRoom.photo, newRoom.roomType, newRoom.roomPrice)
-            if(success != undefined){
-                setSuccessMessage("A New Room was added to the Database !")
-                setNewRoom({photo: null, roomType : " ", roomPrice : " "})
-                setImagePreview(" ")
-                setErrorMessage(" ")
+            if(success !== undefined){
+                setSuccessMessage("A New Room was added sucessfully !")
+                setNewRoom({photo: null, roomType : "", roomPrice : ""})
+                setImagePreview("")
+                setErrorMessage("")
             }else {
-                setErrorMessage("Error adding Room")
+                setErrorMessage("Error adding  new room")
             }
 
         }catch(error){
@@ -67,10 +67,10 @@ const AddRoom = () => {
                                 </label>
                                 <div>
                                 
-                                <RoomTypeSelector handleRoomInputChange = {handleRoomInputChange} 
-                                newRoom={newRoom} 
+                                <RoomTypeSelector 
+                                    handleRoomInputChange = {handleRoomInputChange} 
+                                    newRoom={newRoom} 
                                 />
-
                                 </div>
                             </div>
 
@@ -79,10 +79,10 @@ const AddRoom = () => {
                                     Room Price
                                 </label>
                                 <input
-                                    className="form-control"
                                     required
-                                    id="roomPrice"
                                     type="number"
+                                    className="form-control"
+                                    id="roomPrice" 
                                     name="roomPrice"
                                     value={newRoom.roomPrice}
                                     onChange={handleRoomInputChange}
@@ -90,31 +90,32 @@ const AddRoom = () => {
                             </div>
                             
                             <div className ="mb-3">
-                                <label htmlFor='roomPhoto' className = "form-label">
+                                <label htmlFor='photo' className = "form-label">
                                     Room Photo
                                 </label>
                                 <input
-                                    id="photo"
+                                    required
                                     name="photo"
+                                    id="photo"
                                     type="file"
                                     className="form-control"
                                     onChange={handleImageChange}
                                 />
                                 {imagePreview &&  (
-                                    <img src={imagePreview}
-                                    alt="Preview Room Photo"
-                                    style={{maxWidth: "400px", maxHeight:"400px"}}
-                                    className="mb-3" />
+                                    <img 
+                                        src={imagePreview}
+                                        alt="Preview Room Photo"
+                                        style={{maxWidth: "400px", maxHeight:"400px"}}
+                                        className="mb-3" 
+                                    />
                                 )}
-
                             </div>
                             
-                            <div className="d-grid d-md-flex mt-2">
-                                <button className="btn btn-outline-primary ml-5">
+                            <div className="d-grid gap-2 d-md-flex mt-2">
+                                <button type="submit" className="btn btn-outline-primary ml-5">
                                     Save Room 
                                 </button>
-                            </div>
-                            
+                            </div>  
                         </form>
                 </div>
              </div>

@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from "axios"
 
 export const api = axios.create({
     baseURL : "http://localhost:9192"
@@ -23,7 +23,7 @@ export async function addRoom(photo, roomType, roomPrice){
 /* This Function Gets all Room Types from the Database */
 export async function getRoomTypes(){
     try{
-        const response = await api.get("/rooms/room-types")
+        const response = await api.get("/rooms/room/types")
         return response.data
 
     }catch (error) {
