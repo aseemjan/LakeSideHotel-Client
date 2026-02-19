@@ -1,7 +1,9 @@
 import React from "react"
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import "/node_modules/bootstrap/dist/js/bootstrap.min.js"
-import AddRoom from "/Users/admin/Desktop/GitHub/LakeSide-Hotel/Client/src/components/room/AddRoom.jsx"
+import AddRoom from "./components/room/AddRoom"
+import { Routes, Route } from "react-router-dom"
+import ExistingRooms from "./components/room/ExistingRooms"
 
 
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -11,9 +13,19 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<AddRoom />} />
+      <Route path="/add-room" element={<AddRoom />} />
+      <Route path="/existing-rooms" element={<ExistingRooms />} />
+    </Routes>
+  )
+
+  /*
   return <>
   <AddRoom/>
   </>
+  */
   /*
   const [count, setCount] = useState(0)
 

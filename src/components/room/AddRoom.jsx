@@ -1,6 +1,7 @@
 import React, {useState} from "react"
 import RoomTypeSelector from "../common/RoomTypeSelector"
 import {addRoom} from '/Users/admin/Desktop/GitHub/LakeSide-Hotel/Client/src/components/utils/ApiFunctions'
+import { Link } from "react-router-dom" 
 
 
 const AddRoom = () => {
@@ -124,6 +125,9 @@ const AddRoom = () => {
                             </div>
                             
                             <div className="d-grid gap-2 d-md-flex mt-2">
+                                <Link to={"/existing-rooms"} className="btn btn-outline-info">
+									Existing rooms
+								</Link>
                                 <button type="submit" className="btn btn-outline-primary ml-5">
                                     Save Room 
                                 </button>
