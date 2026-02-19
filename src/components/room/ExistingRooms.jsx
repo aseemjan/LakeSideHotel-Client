@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { getAllRooms } from "../utils/ApiFunctions"
+import { deleteRoom, getAllRooms } from "../utils/ApiFunctions"
 import { Col, Row } from "react-bootstrap"
 import RoomFilter from "../common/RoomFilter"
 import RoomPaginator from "../common/RoomPaginator"
@@ -50,7 +50,7 @@ const ExistingRooms = () => {
 		try {
 			const result = await deleteRoom(roomId)
 			if (result === "") {
-				setSuccessMessage(`Room No ${roomId} was delete`)
+				setSuccessMessage(`Room No. ${roomId} was deleted`)
 				fetchRooms()
 			} else {
 				console.error(`Error deleting room : ${result.message}`)
