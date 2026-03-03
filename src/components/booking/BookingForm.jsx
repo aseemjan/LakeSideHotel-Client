@@ -84,6 +84,18 @@ const BookingForm = () => {
 		setValidated(true)
 	}
 
+	const handleBooking = async () => {
+		try {
+			const confirmationCode = await bookRoom(roomId, booking)
+			setIsSubmitted(true)
+			navigate("/", { state: { message: confirmationCode } })
+		} catch (error) {
+			const errorMessage = error.message
+			console.log(errorMessage)
+			navigate("/booking-success", { state: { error: errorMessage } })
+		}
+	}
+
     const handleFormSubmit = async () => {
 		try {
 			const confirmationCode = await bookRoom(roomId, booking)
