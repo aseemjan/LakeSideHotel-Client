@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import moment from "moment"
+import Button from "react-bootstrap/Button"
 import { useNavigate } from "react-router-dom"
 
-const BookingSummary = (booking, payment, isFormValid, onConfirm) => {
+const BookingSummary = ({booking, payment, isFormValid, onConfirm}) => {
     const checkInDate = moment(booking.checkInDate)
     const checkOutDate = moment(booking.checkOutDate)
     const numberOfDays = checkOutDate.diff(checkInDate, "days")
@@ -32,7 +33,7 @@ const BookingSummary = (booking, payment, isFormValid, onConfirm) => {
         <h4>Reservation Summary</h4>
 
         <p>
-            Full Name : <strong>{booking.guestName}</strong>
+            Full Name : <strong>{booking.guestFullName}</strong>
         </p>
         <p>
             Email : <strong>{booking.guestEmail}</strong>
@@ -49,10 +50,10 @@ const BookingSummary = (booking, payment, isFormValid, onConfirm) => {
         <div>
             <h5>Number Of Guests</h5>
             <strong>
-                Adult{booking.numberOfAdults > 1 ? "s" : ""} :  {booking.numberOfAdults}
+                Adult{booking.numOfAdults > 1 ? "s" : ""} :  {booking.numOfAdults}
             </strong>
             <strong>
-                Children : {booking.numberOfChildren} 
+                <p>Children : {booking.numOfChildren} </p>
             </strong>
         </div>
         {payment > 0 ? (
@@ -63,7 +64,7 @@ const BookingSummary = (booking, payment, isFormValid, onConfirm) => {
 
             {isFormValid && !isBookingConfirmed ? (
                 <Button
-                    varient ="success" onClick={handleConfirmBooking}>
+                    variant ="success" onClick={handleConfirmBooking}>
                     {isProcessingPayment  ? (
                         <>
                         <span
