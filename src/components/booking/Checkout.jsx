@@ -1,6 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import BookingForm from "./BookingForm"
 import { useParams } from 'react-router-dom'
+import {
+	FaUtensils,
+	FaWifi,
+	FaTv,
+	FaWineGlassAlt,
+	FaParking,
+	FaCar,
+	FaTshirt
+} from "react-icons/fa"
+import { getRoomById } from "../utils/ApiFunctions"
+import RoomCarousel from "../common/RoomCarousel"
+
 
 const Checkout = () => {
   const[error, setError] = useState("")
@@ -87,7 +99,7 @@ const Checkout = () => {
 					</div>
 				</div>
 			</section>
-			<div className="container">
+      <div className="container">
 				<RoomCarousel />
 			</div>
 		</div>
