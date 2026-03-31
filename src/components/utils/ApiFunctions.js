@@ -5,6 +5,14 @@ export const api = axios.create({
 })
 
 
+export const getHeader = () => {
+	const token = localStorage.getItem("token")
+	return {
+		Authorization: `Bearer ${token}`,
+		"Content-Type": "application/json"
+	}
+}
+
 /* This Function Adds a New Room to the Database */
 export async function addRoom(photo, roomType, roomPrice){
     const formData = new FormData()
@@ -128,4 +136,45 @@ export async function getAvailableRooms(checkInDate, checkOutDate, roomType) {
 		&checkOutDate=${checkOutDate}&roomType=${roomType}`
 	)
 	return result
+}
+
+/* This function register a new user */
+export async function registerUser(registration) {
+	try {
+		const response = await api.post("/auth/register-user", registration)
+		return response.data
+	} catch (error) {
+		if (error.reeponse && error.response.data) {
+			throw new Error(error.response.data)
+		} else {
+			throw new Error(`User registration error : ${error.message}`)
+		}
+	}
+}
+
+/* This function login a registered user */
+export async function loginUser(login) {
+	try {
+		const response = await api.post("/auth/login", login)
+		if (response.status >= 200 && response.status < 300) {
+			return response.data
+		} else {
+			return null
+		}
+	} catch (error) {
+		console.error(error)
+		return null
+	}
+}
+
+/*  This is function to get the user profile */
+export async function getUserProfile(userId, token) {
+	try {
+		const response = await api.get(`users/profile/${userId}`, {
+			headers: getHeader()
+		})
+		return response.data
+	} catch (error) {
+		throw error
+	}
 }
