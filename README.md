@@ -89,3 +89,23 @@ npm run dev
 
 🔗 Backend Repository
 👉 LakeSideHotel-Service - https://github.com/aseemjan/LakeSideHotel-Service
+
+
+---
+
+💡 Key Highlights
+
+Modular component-based architecture
+Clean separation of concerns (UI / API / State)
+Context API used for authentication state
+Integrated REST APIs using Axios
+Resolved CORS issues during backend integration
+
+---
+
+📌 Future Improvements
+
+Add global state management (Redux / Zustand)
+Improve UI animations and transitions
+Add role-based UI rendering
+Optimize performance (lazy loading)
