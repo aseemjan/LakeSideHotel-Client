@@ -53,6 +53,8 @@ src/
 ├── main.jsx
 └── index.css
 
+```
+
 ---
 
 🔄 Application Flow
