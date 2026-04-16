@@ -59,10 +59,12 @@ src/
 
 🔄 Application Flow
 
+```bash
 User → UI (React Components)
      → API Calls (Axios)
      → Backend (Spring Boot APIs)
 
+```
 ---
 
 ⚙️ How to Run
