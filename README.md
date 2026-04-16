@@ -69,6 +69,7 @@ User → UI (React Components)
 
 ⚙️ How to Run
 
+```bash
 # Clone repo
 git clone https://github.com/aseemjan/LakeSideHotel-Client.git
 
@@ -80,6 +81,9 @@ npm install
 
 # Run development server
 npm run dev
+
+```
+
 
 ---
 
